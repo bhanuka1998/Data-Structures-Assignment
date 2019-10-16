@@ -1,4 +1,4 @@
-class customer:
+class Customer:
     def __init__(self, name, address, vehicle_no, contact_no, nic_no, customer_type="General"):
         self.name = name
         self.address = address
@@ -7,7 +7,21 @@ class customer:
         self.nic_no = nic_no
         self.customer_type = customer_type
 
-class clean_park:
+
+class Clean_park:
+    def __init__(self):
+        customer_list = []
+        print(customer_list)
+
+    def add_customer():
+        name = input("Input Customer Name: ")
+        address = input("Input Customer Address: ")
+        vehicle_no = input("Input Vehicle Number: ")
+        contact_no = input("Input Contact Number: ")
+        nic_no = input("Input NIC Number: ")
+        # return name, address, vehicle_no, contact_no, nic_no
+        customer1 = Customer(name, address, vehicle_no, contact_no, nic_no)
+
     def select_option(self):
         while True:
             print("Welcome to Clean Park Daily Car Service")
@@ -22,7 +36,10 @@ class clean_park:
             print("Enter No.7 to remove the service from queue")
             print("Enter No.8 to view the service status")
             choice = int(input("Select option: "))
+            if choice is 1:
+                Clean_park.add_customer()
 
 
-menu1 = clean_park()
-menu1.select_option()
+menu1 = Clean_park()
+cus1 = Customer(menu1.select_option())
+menu1.__init__()
