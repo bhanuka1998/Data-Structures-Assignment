@@ -6,21 +6,24 @@ class Customer:
         self.contact_no = contact_no
         self.nic_no = nic_no
         self.customer_type = customer_type
-
+        print(name, address, vehicle_no, contact_no, nic_no, customer_type)
 
 class Clean_park:
-    def __init__(self):
-        customer_list = []
+    def __init__(self, customer1):
+        self.customer1 = customer_list = []
+        customer_list.append(customer1)
         print(customer_list)
 
-    def add_customer():
+    def add_customer(self):
         name = input("Input Customer Name: ")
         address = input("Input Customer Address: ")
         vehicle_no = input("Input Vehicle Number: ")
         contact_no = input("Input Contact Number: ")
         nic_no = input("Input NIC Number: ")
         # return name, address, vehicle_no, contact_no, nic_no
-        customer1 = Customer(name, address, vehicle_no, contact_no, nic_no)
+        self.customer1 = Customer(name, address, vehicle_no, contact_no, nic_no)
+       # customer_list = [customer1]
+       # print(customer_list)
 
     def select_option(self):
         while True:
@@ -42,4 +45,3 @@ class Clean_park:
 
 menu1 = Clean_park()
 cus1 = Customer(menu1.select_option())
-menu1.__init__()
