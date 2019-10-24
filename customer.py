@@ -37,12 +37,13 @@ class Clean_park:
             print("No customer under this identity")
 
     def find_customer(self, customer_list, customer_id):
+        find_customer = int(input("Input Customer ID: "))
         first = 0
         last = len(customer_list) - 1
-        while(first != last):
+        while first != last:
             mid = (first + last) // 2
             if customer_list[mid].id == customer_id:
-                customer_list[mid] = update_customer_details(customer_list[first])
+                customer_list[mid] = (customer_list[first])
                 print("Customer updated.")
                 return True
             else:
@@ -51,17 +52,20 @@ class Clean_park:
                 else:
                     first = mid
         if customer_list[first].id == customer_id:
-            customer_list[first] = update_customer_details(customer_list[first])
+            customer_list[first] = Clean_park.update_customer_details(customer_list[first])
             print("Customer updated.")
             return True
         else:
             raise ValueError("Customer not found.")
+
     def update_customer_details(self, customer):
         customer.name = input("New customer name: ")
         customer.address = input("New address: ")
-
-
-
+        customer.vehicle_no = input("New vehicle No.: ")
+        customer.contact_no = input("New contact No.: ")
+        customer.nic_no = input("New NIC No.: ")
+        customer.customer_type = input("New customer type: ")
+        return customer
 
     def select_option(self):
         while True:
@@ -83,7 +87,7 @@ class Clean_park:
                 elif choice is 2:
                     self.remove_customer()
                 elif choice is 3:
-                    pass
+                    self.find_customer()
                 elif choice is 4:
                     for customer in self.customer_list:
                         print("Customer Name: ", customer.name, "Customer ID: ", customer.customer_id)
