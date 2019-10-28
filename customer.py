@@ -16,6 +16,8 @@ class Clean_park:
 
     def add_customer(self):
         name = input("Input Customer Name: ")
+        if name == "":
+            raise ValueError("Please fill required fields...")
         address = input("Input Customer Address: ")
         vehicle_no = input("Input Vehicle Number: ")
         contact_no = input("Input Contact Number: ")
@@ -36,23 +38,23 @@ class Clean_park:
         else:
             print("No customer under this identity")
 
-    def find_customer(self, customer_list, customer_id):
+    def find_customer(self, customer_list):
         find_customer = int(input("Input Customer ID: "))
         first = 0
         last = len(customer_list) - 1
         while first != last:
             mid = (first + last) // 2
-            if customer_list[mid].id == customer_id:
-                customer_list[mid] = (customer_list[first])
+            if customer_list[mid].customer_id == find_customer:
+                customer_list[mid] = self.update_customer_details(customer_list[first])
                 print("Customer updated.")
                 return True
             else:
-                if customer_id < customer_list[mid].id:
+                if find_customer < customer_list[mid].customer_id:
                     last = mid
                 else:
                     first = mid
-        if customer_list[first].id == customer_id:
-            customer_list[first] = Clean_park.update_customer_details(customer_list[first])
+        if customer_list[first].customer_id == find_customer:
+            customer_list[first] = self.update_customer_details(customer_list[first])
             print("Customer updated.")
             return True
         else:
@@ -67,6 +69,14 @@ class Clean_park:
         customer.customer_type = input("New customer type: ")
         return customer
 
+    def view_customer_details(self):
+        view_customer = int(input("Input Customer ID: "))
+        if view_customer in self.customer_id_list:
+            self.customer_list = [customer for customer in self.customer_list if customer.customer_id == view_customer]
+            print(self.customer_list)
+        else:
+            print("No customer under this identity")
+
     def select_option(self):
         while True:
             print("Welcome to Clean Park Daily Car Service")
@@ -75,11 +85,11 @@ class Clean_park:
             print("Enter No.2 to remove a customer")
             print("Enter No.3 to update customer details")
             print("Enter No.4 to view customer details")
-            print("Enter No.4 to view all customers")
-            print("Enter No.5 to request for a service")
-            print("Enter No.6 to add the service to queue")
-            print("Enter No.7 to remove the service from queue")
-            print("Enter No.8 to view the service status")
+            print("Enter No.5 to view all customers")
+            print("Enter No.6 to request for a service")
+            print("Enter No.7 to add the service to queue")
+            print("Enter No.8 to remove the service from queue")
+            print("Enter No.9 to view the service status")
             try:
                 choice = int(input("Select option: "))
                 if choice is 1:
@@ -87,15 +97,16 @@ class Clean_park:
                 elif choice is 2:
                     self.remove_customer()
                 elif choice is 3:
-                    self.find_customer()
+                    self.find_customer(self.customer_list)
                 elif choice is 4:
+                    self.view_customer_details()
+                elif choice is 5:
                     for customer in self.customer_list:
                         print("Customer Name: ", customer.name, "Customer ID: ", customer.customer_id)
                 else:
                     raise ValueError("Invalid Option.")
             except ValueError:
                 print("Invalid choice. Please input a valid option.")
-
 
 
 menu1 = Clean_park()
