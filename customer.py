@@ -1,5 +1,5 @@
 class Customer:
-    def __init__(self, name, address, vehicle_no, contact_no, nic_no, customer_id, customer_type="General"):
+    def __init__(self, name, address, vehicle_no, contact_no, nic_no, customer_id, customer_type="General", service_status=None):
         self.name = name
         self.address = address
         self.vehicle_no = vehicle_no
@@ -7,6 +7,10 @@ class Customer:
         self.nic_no = nic_no
         self.customer_type = customer_type
         self.customer_id = customer_id
+        self.service_status = service_status
+
+    def __repr__(self):
+        return f'Name: {self.name}, NIC: {self.nic_no}'
 
 
 class Clean_park:
@@ -76,6 +80,13 @@ class Clean_park:
             print(self.customer_list)
         else:
             print("No customer under this identity")
+
+    def request_service(self, customer_list):
+        requested_customer = int(input("Input customer ID: "))
+        if requested_customer in self.customer_id_list:
+            for customer in customer_list:
+                if Customer.service_status == None:
+                    
 
     def select_option(self):
         while True:
