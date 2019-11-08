@@ -81,12 +81,23 @@ class Clean_park:
         else:
             print("No customer under this identity")
 
-    def request_service(self, customer_list):
+    def request_service(self, customer):
         requested_customer = int(input("Input customer ID: "))
         if requested_customer in self.customer_id_list:
-            for customer in customer_list:
-                if Customer.service_status == None:
-                    
+            for customer in self.customer_list:
+                if customer.service_status is None:
+                    print("Please enter these values\
+                    Enter I for in progress\
+                    Enter C for completed\
+                    Enter N for not conducted")
+                    customer.service_status = input("Input service status: ")
+                    customer.vehicle_no = input("Input vehicle number: ")
+                    self.customer_list.append(customer.service_status)
+                    self.customer_list.append(customer.vehicle_no)
+                elif customer.service_status == "I":
+                    customer.service_status = input("Input service status: ")
+                    customer.vehicle_no = input("Input vehicle number: ")
+                return True
 
     def select_option(self):
         while True:
@@ -114,6 +125,8 @@ class Clean_park:
                 elif choice is 5:
                     for customer in self.customer_list:
                         print("Customer Name: ", customer.name, "Customer ID: ", customer.customer_id)
+                elif choice is 6:
+                    self.request_service(self.customer_id_list)
                 else:
                     raise ValueError("Invalid Option.")
             except ValueError:
