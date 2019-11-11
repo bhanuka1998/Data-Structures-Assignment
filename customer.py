@@ -92,11 +92,21 @@ class Clean_park:
                     Enter N for not conducted")
                     customer.service_status = input("Input service status: ")
                     customer.vehicle_no = input("Input vehicle number: ")
-                    self.customer_list.append(customer.service_status)
-                    self.customer_list.append(customer.vehicle_no)
-                elif customer.service_status == "I":
+                return True
+
+    def add_reject_service(self, customer):
+        selected_customer = int(input("Input customer ID: "))
+        if selected_customer in self.customer_id_list:
+            for customer in self.customer_list:
+                if customer.service_status == "I":
+                    print("Please enter these values\
+                    Enter I for in progress\
+                    Enter C for completed\
+                    Enter N for not conducted")
                     customer.service_status = input("Input service status: ")
                     customer.vehicle_no = input("Input vehicle number: ")
+                    # self.customer_list.append(customer.service_status)
+                    # self.customer_list.append(customer.vehicle_no)
                 return True
 
     def select_option(self):
@@ -110,8 +120,7 @@ class Clean_park:
             print("Enter No.5 to view all customers")
             print("Enter No.6 to request for a service")
             print("Enter No.7 to add the service to queue")
-            print("Enter No.8 to remove the service from queue")
-            print("Enter No.9 to view the service status")
+            print("Enter No.8 to view the service status")
             try:
                 choice = int(input("Select option: "))
                 if choice is 1:
@@ -127,6 +136,11 @@ class Clean_park:
                         print("Customer Name: ", customer.name, "Customer ID: ", customer.customer_id)
                 elif choice is 6:
                     self.request_service(self.customer_id_list)
+                elif choice is 7:
+                    self.add_reject_service(self.customer_list)
+                elif choice is 8:
+                    for customer in self.customer_list:
+                        print("Customer Name: ", customer.name, "Customer ID: ", customer.customer_id, "Service Status: ", customer.service_status)
                 else:
                     raise ValueError("Invalid Option.")
             except ValueError:
