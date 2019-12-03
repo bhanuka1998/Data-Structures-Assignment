@@ -1,3 +1,6 @@
+from linked_list import LinkedList
+
+
 class Customer:
     def __init__(self, name, address, vehicle_no, contact_no, nic_no, customer_id, customer_type="General", service_status=None):
         self.name = name
@@ -16,7 +19,7 @@ class Customer:
 class Clean_park:
     def __init__(self):
         self.customer_list = []
-        self.customer_id_list = []
+        self.customer_id_list = LinkedList()
 
     def add_customer(self):
         name = input("Input Customer Name: ")
@@ -32,7 +35,7 @@ class Clean_park:
         else:
             customer_id = self.customer_list[-1].customer_id + 1
         self.customer_list.append(Customer(name, address, vehicle_no, contact_no, nic_no, customer_id))
-        self.customer_id_list.append(customer_id)
+        self.customer_id_list.append(data=customer_id)
 
     def remove_customer(self):
         to_delete = int(input("Input Customer ID: "))
